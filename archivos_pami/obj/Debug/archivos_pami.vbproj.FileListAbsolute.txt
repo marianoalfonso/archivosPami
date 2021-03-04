@@ -1,0 +1,12 @@
+C:\Users\mariano\AppData\Local\Temporary Projects\archivos_pami\bin\Debug\archivos_pami.exe.config
+C:\projects\incluir salud\archivos_pami\archivos_pami\bin\Debug\archivos_pami.exe.config
+C:\projects\incluir salud\archivos_pami\archivos_pami\bin\Debug\archivos_pami.exe
+C:\projects\incluir salud\archivos_pami\archivos_pami\bin\Debug\archivos_pami.pdb
+C:\projects\incluir salud\archivos_pami\archivos_pami\bin\Debug\archivos_pami.xml
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.vbprojResolveAssemblyReference.cache
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.Form1.resources
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.Resources.resources
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.vbproj.GenerateResource.Cache
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.exe
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.xml
+C:\projects\incluir salud\archivos_pami\archivos_pami\obj\Debug\archivos_pami.pdb

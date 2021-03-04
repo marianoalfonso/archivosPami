@@ -1,0 +1,10 @@
+[AUTHENTICATION]
+SCOPE=local
+[DATABASE_CREDENTIALS]
+DATA_SOURCE=DESKTOP
+INITIAL_CATALOG=liquidaciones_pami
+USER_ID=usrLiquidaciones
+PASSWORD=usrLiquidaciones
+CONNECTION_TIMEOUT=0
+[PATHS]
+NEW_FILES=c:\ArchivosFacturacionX\

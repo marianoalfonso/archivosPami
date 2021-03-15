@@ -47,26 +47,26 @@
             Dim sPath As String
             '        sPath = Trim(sArchivo) + ".txt"
             sPath = Trim(sArchivo)
-            Dim sFile As New IO.StreamReader(sPath)
-            Do While Not sFile.EndOfStream
-                sAux = Trim(sFile.ReadLine)
-                bytFound = InStr(sAux, strSection)
-                If bytFound > 0 Then
-                    Exit Do
-                End If
-            Loop
-            If bytFound > 0 Then    'Si encontro la cadena
-                bytFound = 0
-
+            Using sFile As New IO.StreamReader(sPath)
                 Do While Not sFile.EndOfStream
                     sAux = Trim(sFile.ReadLine)
-                    bytFound = InStr(sAux, strItem)  'InStr Busca strItem en el archivo
+                    bytFound = InStr(sAux, strSection)
                     If bytFound > 0 Then
-                        ConfigGet = Mid(sAux, InStr(sAux, "=") + 1) 'Extrae el resultado
                         Exit Do
                     End If
                 Loop
-            End If
+                If bytFound > 0 Then    'Si encontro la cadena
+                    bytFound = 0
+                    Do While Not sFile.EndOfStream
+                        sAux = Trim(sFile.ReadLine)
+                        bytFound = InStr(sAux, strItem)  'InStr Busca strItem en el archivo
+                        If bytFound > 0 Then
+                            ConfigGet = Mid(sAux, InStr(sAux, "=") + 1) 'Extrae el resultado
+                            Exit Do
+                        End If
+                    Loop
+                End If
+            End Using
         Catch ex As Exception
             Err.Clear()
         End Try

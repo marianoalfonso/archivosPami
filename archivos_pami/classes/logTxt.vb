@@ -22,6 +22,19 @@ Public Class logTxt
         End Try
     End Sub
 
+    Public Sub writeSystemErrorLog(errorMessage As String)
+        Dim writer As StreamWriter
+        Try
+            writer = File.AppendText(newFilesPath & "systemErrorLog\systemErrorLog.txt")
+            writer.Write(Now.ToString("yyyyMMdd") & ") - " & errorMessage & vbCrLf)
+            writer.Flush()
+            writer.Close()
+            writer.Dispose()
+        Catch ex As Exception
+            'MessageBox.Show("error escribiendo en el log")
+        End Try
+    End Sub
+
     Public Sub writeSqlLog(archivo As String, validado As String, importado As String)
         Dim conn As New SqlConnection(gsConnectionString)
         Try
@@ -41,5 +54,6 @@ Public Class logTxt
             conn = Nothing
         End Try
     End Sub
+
 
 End Class

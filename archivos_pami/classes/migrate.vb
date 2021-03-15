@@ -94,24 +94,26 @@ Public Class migrate
                 'we clear the last position of the array that is empty
                 ReDim Preserve sRegistro(UBound(sRegistro) - 1)
             End Using
-            If GrabarFacturacion(sRegistro, "D") Then
+            If GrabarFacturacion(sRegistro, "D", fileName) Then
                 log.writeLog("archivo importado a la base de datos")
                 log.writeSqlLog(Trim(fileName), "s", "s")
-                'System.IO.File.Move(newFilesPath & "validados\" & fileName, newFilesPath & "validados\migrados\" & fileName)
+                System.IO.File.Move(newFilesPath & "validados\" & fileName, newFilesPath & "validados\migrados\" & fileName)
             Else
                 log.writeLog("error importando archivo a la base de datos")
-                'System.IO.File.Move(newFilesPath & "\validados\" & fileName, newFilesPath & "noMigrados\" & fileName)
+                System.IO.File.Move(newFilesPath & "validados\" & fileName, newFilesPath & "validados\noMigrados\" & fileName)
                 log.writeSqlLog(Trim(fileName), "s", "n")
             End If
             log = Nothing
         Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+            log.writeSystemErrorLog(Err.Number & "-" & Err.Description)
             log = Nothing
         End Try
     End Sub
 
-    Private Function GrabarFacturacion(ByVal sArray() As Registro, sArea As Char) As Boolean
+    Private Function GrabarFacturacion(ByVal sArray() As Registro, sArea As Char, fileName As String) As Boolean
         Dim Elementos, iElemento As Integer
+        Dim log As New logTxt
+        log.logPath = fileName
         Dim Conn As New SqlConnection(gsConnectionString)
         Try
             Elementos = sArray.Length - 1
@@ -144,10 +146,11 @@ Public Class migrate
             Return True
         Catch ex As Exception
             If Err.Number = 5 Then
-                MsgBox("El archivo seleccionado ya fue importado", vbCritical)
-                Err.Clear()
+                log.writeLog("error - archivo existente en la base de datos")
                 Return False
             End If
+        Finally
+            log = Nothing
         End Try
     End Function
 
